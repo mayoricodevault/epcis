@@ -1,0 +1,36 @@
+{
+  "name": "epcis",
+  "version": "1.0.0",
+  "description": "Epcis app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmayorivera/epcis.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Adrian Zelada, zelada_torrez@hotmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "lowdb": "^1.0.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0",
+    "mocha": "^5.2.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "rules": {
+      "semi": 2
+    }
+  }
+}

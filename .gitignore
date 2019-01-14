@@ -1,0 +1,12 @@
+/node_modules
+
+/logs/
+.idea/
+/.idea
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Optional REPL history
+.node_repl_history
