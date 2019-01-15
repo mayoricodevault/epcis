@@ -1,6 +1,6 @@
 
 let parentRouter = require('../core/parent.router');
-let Item= require('../schemas/items');
+let Item = require('../schemas/items');
 
 class Items extends parentRouter {
 
@@ -12,4 +12,5 @@ class Items extends parentRouter {
         super(router, Item(db));
     }
 }
+
 module.exports = Items;

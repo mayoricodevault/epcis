@@ -2,7 +2,9 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var Items = require('./api/items');
-// var Middleware=require('./core/middleware')
+var Jobs = require('./job');
+var Comunication = require('./comunication');
+var path = require('path');
 
 module.exports.start = (options) => {
 
@@ -17,6 +19,14 @@ module.exports.start = (options) => {
 
     //  Add the APIs to the app.
     app.use('/items',ModelItems.router);
+
+    app.get('/json/data.json', (req, res) => {
+        res.sendFile(path.join(__dirname, '/json', 'data.json'));
+    });
+
+    let job = new Jobs(options.jobs.timerRequest);
+    job.run(Comunication.getStates);
+
     let server = app.listen(options.port, () => {
       resolve(server);
     });

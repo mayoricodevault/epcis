@@ -11,8 +11,12 @@ class Items extends ParentItems{
     }
 
     constructor(db){
-        super(db, 'items')
+        super(db, 'items');
         this.db = db;
+    }
+
+    set(data){
+       return this.db.set(this.schema, data);
     }
 
     static getInstance(db=null){

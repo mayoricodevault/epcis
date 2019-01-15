@@ -3,9 +3,9 @@ class ParentRouter {
     get defaultRoute(){
         return {
             '/'         : 'getData',
-            'POST /'    : 'create',
-            'PUT /'     : 'update',
-            'DELETE /:id'  : 'remove'
+            // 'POST /'    : 'create',
+            // 'PUT /'     : 'update',
+            // 'DELETE /:id'  : 'remove'
         }
     }
 
@@ -16,7 +16,6 @@ class ParentRouter {
     constructor(router,Model=null,config = {}){
         this.router=router;
         this.Model=Model;
-        this._config =config;
         this.default={};
         if (!this.router) throw new Error('Missing app property');
         this.default = Model ? this.defaultRoute:{}
@@ -25,7 +24,6 @@ class ParentRouter {
 
     registerRoutes() {
         let routes = Object.assign({},this.default,this.routes);
-
         Object.keys(routes).forEach((path) => {
             let method = routes[path];
             let verb = path.split(' ').length > 1 ? path.split(' ')[0] : 'get';
@@ -36,8 +34,6 @@ class ParentRouter {
     }
 
     getData(req,res) {
-        let key=req.query.key;
-        let value=req.query.value;
         this.Model.list().then((response) => {
             return res.json(response);
         });
@@ -68,15 +64,6 @@ class ParentRouter {
 
     remove(req,res){
 
-        // this.Model.destroy({
-        //     where:{
-        //         id :req.params.id
-        //     }
-        // }).then((resp) =>{
-        //     return res.json(resp);
-        // }).catch((e)=>{
-        //     this.handleError(res)(e);
-        // });
     }
 
     handleError(res) {

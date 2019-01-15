@@ -10,6 +10,25 @@ class Repository {
           .write();
   }
 
+  set(schema, data){
+      return new Promise((res, rej)=>{
+          return res(
+              this.db
+                  .set(schema,data)
+                  .write()
+          )
+      })
+  }
+
+  read() {
+      return new Promise((res, rej)=>{
+          return res(
+              this.db
+                  .getState()
+          )
+      })
+  }
+
   list(schema, data = null){
       return new Promise((res, rej)=>{
           return res(
@@ -22,7 +41,7 @@ class Repository {
   }
 
   write(schema ,data){
-      data.id = Date.now();
+      data.id = this.guid();
       data.createdAt = Date.now();
       return new Promise((res, rej)=>{
           return res(
@@ -48,7 +67,14 @@ class Repository {
 
   }
 
-  disconnect() {}
+  guid() {
+      function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+      }
+      return `${s4()}-${s4()}`
+  }
 }
 module.exports.connect = connectionSettings => {
   return new Promise((resolve, reject) => {
